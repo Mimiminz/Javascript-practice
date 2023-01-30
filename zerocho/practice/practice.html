@@ -15,32 +15,37 @@
   <button>입력</button>
   <script>
     const number = Number(prompt('몇 명이 참가하나요?'));
-    const $button = document.querySelector('button');
-    const $input = document.querySelector('input');
-    const $word = document.querySelector('#word');
-    const $order = document.querySelector('#order');
 
-    let word;
-    let newword;
+    if(number){
+      const $button = document.querySelector('button');
+      const $input = document.querySelector('input');
+      const $word = document.querySelector('#word');
+      const $order = document.querySelector('#order');
 
-    const onClickButton = () => {
-      if (!word || word[word.length - 1] === newword[0]) { //제시어가 비어있거나 올바르게 입력했는가?
-        word = newword;
-        $word.textContent = word;
-        const order = Number($order.textContent);
-        $order.textContent = order % number + 1;
-      }else {
-        alert('올바르지 않은 단어입니다!');
-      }
-      $input.value = '';
-      $input.focus();
-    };
-    const onInput = (event) => {
-      newword = event.target.value;
-    };
+      let word;
+      let newword;
 
-    $button.addEventListener('click', onClickButton);
-    $input.addEventListener('input', onInput);
+      const onClickButton = () => {
+        if ((!word || word[word.length - 1] === newword[0]) && newword.length === 3) { //제시어가 비어있거나 올바르게 입력했는가?
+          word = newword;
+          $word.textContent = word;
+          const order = Number($order.textContent);
+          $order.textContent = order % number + 1;
+        }else {
+          alert('올바르지 않은 단어입니다!');
+        }
+        $input.value = '';
+        $input.focus();
+      };
+      const onInput = (event) => {
+        newword = event.target.value;
+      };
+
+      $button.addEventListener('click', onClickButton);
+      $input.addEventListener('input', onInput);
+    }else{
+      alert('다시 시작해주세요');
+    }
   </script>
 </body>
 
