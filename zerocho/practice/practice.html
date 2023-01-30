@@ -15,6 +15,13 @@
     const number = parseInt(prompt('몇 명이 참가하나요?'), 10);
     alert(number);
     const yesOrNo = confirm('맞나요?');
+
+    document.querySelector('input').addEventListener('input', function() {
+      console.log('글자입력');
+    });
+    document.querySelector('button').addEventListener('click', function() {
+      console.log('버튼클릭');
+    });
   </script>
 </body>
 </html>
