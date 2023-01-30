@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>끝말잇기</title>
 </head>
+
 <body>
   <div><span id="order">1</span>번째 참가자</div>
   <div>제시어: <span id="word"></span></div>
@@ -16,38 +18,45 @@
     const $button = document.querySelector('button');
     const $input = document.querySelector('input');
     const $word = document.querySelector('#word');
+    const $order = document.querySelector('#order');
 
     let word;
     let newword;
 
     const onClickButton = () => {
-      if(!word) { //제시어가 비어있는가?
+      if (!word) { //제시어가 비어있는가?
         word = newword;
         $word.textContent = word;
-        $input.value = '';
         const order = Number($order.textContent);
-        if(order + 1 > number){
+        if (order + 1 > number) {
           $order.textContent = 1;
-        }else{
+        } else {
           $order.textContent = order + 1;
         }
-      }else { //비어있지 않다.
-        if(word[word.length - 1] == newword[0]){
+      } else { //비어있지 않다.
+        if (word[word.length - 1] === newword[0]) {
           word = newword;
           $word.textContent = word;
-          $input.value = '';
-        }else{
-
+          const order = Number($order.textContent);
+          if (order + 1 > number) {
+            $order.textContent = 1;
+          } else {
+            $order.textContent = order + 1;
+          }
+        } else {
+          alert('올바르지 않은 단어입니다!');
         }
       }
+      $input.value = '';
+      $input.focus();
     };
     const onInput = (event) => {
       newword = event.target.value;
     };
-    
 
     $button.addEventListener('click', onClickButton);
     $input.addEventListener('input', onInput);
   </script>
 </body>
+
 </html>
