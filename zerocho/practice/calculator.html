@@ -66,10 +66,20 @@
     document.querySelector('#num-7').addEventListener('click', onClickNumber);
     document.querySelector('#num-8').addEventListener('click', onClickNumber);
     document.querySelector('#num-9').addEventListener('click', onClickNumber);
-    document.querySelector('#plus').addEventListener('click', onClickNumber('1'));
-    document.querySelector('#minus').addEventListener('click', onClickNumber('1'));
-    document.querySelector('#divide').addEventListener('click', onClickNumber('1'));
-    document.querySelector('#multiply').addEventListener('click', onClickNumber('1'));
+
+    const onClickOperator = (event) => {
+        if(numOne){
+            operator = event.target.textContent;
+            $operator.value = event.target.textContent;
+        }else{
+            alert('숫자를 먼저 입력하세요');
+        }
+    }
+    document.querySelector('#plus').addEventListener('click', onClickOperator);
+    document.querySelector('#minus').addEventListener('click', onClickOperator);
+    document.querySelector('#divide').addEventListener('click', onClickOperator);
+    document.querySelector('#multiply').addEventListener('click', onClickOperator);
+    
     document.querySelector('#calculate').addEventListener('click', onClickNumber('1'));
     document.querySelector('#clear').addEventListener('click', onClickNumber('1'));
   </script>
