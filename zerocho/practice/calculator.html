@@ -7,14 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>계산기</title>
   <style>
-    * { box-sizing: border-box }
-    #result { width: 180px; height: 50px; margin: 5px; text-align: right }
-    #operator {width: 50px; height: 50px; margin: 5px; text-align: center }
-    button {width: 50px; height: 50px; margin: 5px }
+    * {
+      box-sizing: border-box
+    }
+
+    #result {
+      width: 180px;
+      height: 50px;
+      margin: 5px;
+      text-align: right
+    }
+
+    #operator {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      text-align: center
+    }
+
+    button {
+      width: 50px;
+      height: 50px;
+      margin: 5px
+    }
   </style>
 </head>
 
 <!-- 계산기 버튼-->
+
 <body>
   <input readonly id="operator">
   <input readonly type="number" id="result">
@@ -43,19 +63,24 @@
     <button id="multiply">x</button>
   </div>
   <script>
-    let numOne ='';
+    let numOne = '';
     let operator = '';
-    let numTwo ='';
+    let numTwo = '';
     const $operator = document.querySelector('#operator');
-    const $result =document.querySelector('#result');
+    const $result = document.querySelector('#result');
     const onClickNumber = (event) => {
-        if(operator) {
-            numTwo += event.target.textContent;
-        } else {
-            numOne += event.target.textContent;
-        }
+      if (!operator) {
+        numOne += event.target.textContent;
         $result.value += event.target.textContent;
+        return;
+      }
+      if (!numTwo)
+        $result.value = '';
+      numTwo += event.target.textContent;
+      $result.value += event.target.textContent;
+
     }; //고차함수 (high order function) - 함수가 함수를 리턴하는 것
+
     document.querySelector('#num-0').addEventListener('click', onClickNumber);
     document.querySelector('#num-1').addEventListener('click', onClickNumber);
     document.querySelector('#num-2').addEventListener('click', onClickNumber);
@@ -68,20 +93,47 @@
     document.querySelector('#num-9').addEventListener('click', onClickNumber);
 
     const onClickOperator = (event) => {
-        if(numOne){
-            operator = event.target.textContent;
-            $operator.value = event.target.textContent;
-        }else{
-            alert('숫자를 먼저 입력하세요');
-        }
+      if (numOne) {
+        operator = event.target.textContent;
+        $operator.value = event.target.textContent;
+      } else {
+        alert('숫자를 먼저 입력하세요');
+      }
     }
     document.querySelector('#plus').addEventListener('click', onClickOperator);
     document.querySelector('#minus').addEventListener('click', onClickOperator);
     document.querySelector('#divide').addEventListener('click', onClickOperator);
     document.querySelector('#multiply').addEventListener('click', onClickOperator);
-    
-    document.querySelector('#calculate').addEventListener('click', onClickNumber('1'));
-    document.querySelector('#clear').addEventListener('click', onClickNumber('1'));
+
+    document.querySelector('#calculate').addEventListener('click', () => {
+      if (numTwo) {
+        switch (operator) {
+          case '+':
+            $result.value = parseInt(numOne) + parseInt(numTwo);
+            break;
+          case '-':
+            $result.value = parseInt(numOne) - parseInt(numTwo);
+            break;
+          case '*':
+            $result.value = parseInt(numOne) * parseInt(numTwo);
+            break;
+          case '/':
+            $result.value = parseInt(numOne) / parseInt(numTwo);
+            break;
+          default:
+            break;
+        }
+      } else {
+        alert('숫자를 먼저 입력하세요');
+      }
+    });
+    document.querySelector('#clear').addEventListener('click', () => {
+      numOne = '';
+      numTwo = '';
+      operator = '';
+      $operator.value = '';
+      $result.value = '';
+    });
   </script>
 </body>
 
