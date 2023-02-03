@@ -94,6 +94,10 @@
 
     const onClickOperator = (event) => {
       if (numOne) {
+        if (operator){
+          numOne = $result.value;
+          numTwo = '';
+        }
         operator = event.target.textContent;
         $operator.value = event.target.textContent;
       } else {
@@ -114,7 +118,7 @@
           case '-':
             $result.value = parseInt(numOne) - parseInt(numTwo);
             break;
-          case '*':
+          case 'x':
             $result.value = parseInt(numOne) * parseInt(numTwo);
             break;
           case '/':
