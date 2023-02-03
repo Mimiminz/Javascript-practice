@@ -94,10 +94,6 @@
 
     const onClickOperator = (event) => {
       if (numOne) {
-        if (operator){
-          numOne = $result.value;
-          numTwo = '';
-        }
         operator = event.target.textContent;
         $operator.value = event.target.textContent;
       } else {
@@ -127,6 +123,9 @@
           default:
             break;
         }
+        $operator.value = '';
+        numOne = $result.value;
+        numTwo = '';
       } else {
         alert('숫자를 먼저 입력하세요');
       }
