@@ -16,6 +16,24 @@
       const $input = document.querySelector('#input')
       const $form = document.querySelector('#form')
       const $logs = document.querySelector('#logs')
+
+      const numbers = [];
+      for(let n = 0; n < 9; n += 1){
+         numbers.push(n+1);
+      }
+
+      const answer = [];
+      for(let n = 0; n < 4; n += 1){
+         const index = Math.floor(Math.random() * numbers.length);
+         answer.push(numbers[index]);
+         numbers.splice(index, 1);
+      }
+      console.log(answer);
+
+      $form.addEventListener('submit', (event) => {
+            event.preventDefault(); //기본동작막기
+            console.log('서브밋');
+      });
    </script>
 </body>
 
