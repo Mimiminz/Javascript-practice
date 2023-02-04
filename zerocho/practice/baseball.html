@@ -30,9 +30,26 @@
       }
       console.log(answer);
 
+      const tries = [];
+      function checkInput(input) {
+         if(input.length !== 4)
+            return alert('4자리 숫자를 입력해주세요.');
+         if(new Set(input).size !== 4)
+            return alert('중복되지 않게 입력해주세요.');
+         if(tries.includes(input))
+            return alert('이미 시도한 값입니다.');
+         tries.push(input);
+         return true;
+      };
       $form.addEventListener('submit', (event) => {
             event.preventDefault(); //기본동작막기
-            console.log('서브밋');
+            const value = $input.value;
+            $input.value = '';
+            if(checkInput(value)){
+               console.log('3 strilkes!!');
+            }else{ //error
+
+            }
       });
    </script>
 </body>
