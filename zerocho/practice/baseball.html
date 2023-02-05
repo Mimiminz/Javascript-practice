@@ -41,15 +41,37 @@
          tries.push(input);
          return true;
       };
+
       $form.addEventListener('submit', (event) => {
             event.preventDefault(); //기본동작막기
             const value = $input.value;
             $input.value = '';
-            if(checkInput(value)){
-               console.log('3 strilkes!!');
-            }else{ //error
-
+            if(!checkInput(value)){
+               return;
             }
+            
+            if(answer.join('') === value){
+               $logs.textContent = '3 strilkes!!!';
+               return;
+            }
+            if(tries.length > 9){
+               $logs.appendChild(document.createTextNode(`10번의 기회를 모두 사용했습니다. 정답은 ${answer.join('')}입니다.`));
+               return;
+            }
+
+            let strilkes = 0;
+            let ball = 0;
+            for(let i = 0; i < answer.length; i++){
+               const index = value.indexOf(answer[i]);
+               if(index > -1){
+                  if(index === i)
+                     strilkes += 1;
+                  else
+                     ball += 1;
+               }
+            }
+
+            $logs.append(`${strilkes} strilkes, ${ball} balls`, document.createElement('br'));
       });
    </script>
 </body>
