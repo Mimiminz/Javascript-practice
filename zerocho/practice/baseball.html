@@ -51,7 +51,7 @@
             }
             
             if(answer.join('') === value){
-               $logs.textContent = '3 strilkes!!!';
+               $logs.textContent = `3 strilkes!!! 정답은 ${value}입니다.`;
                return;
             }
             if(tries.length > 9){
@@ -71,7 +71,7 @@
                }
             }
 
-            $logs.append(`${strilkes} strilkes, ${ball} balls`, document.createElement('br'));
+            $logs.append(`${value}값은 ${strilkes} strilkes, ${ball} balls 입니다.`, document.createElement('br'));
       });
    </script>
 </body>
