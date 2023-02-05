@@ -71,7 +71,10 @@
                }
             }
 
-            $logs.append(`${value}값은 ${strilkes} strilkes, ${ball} balls 입니다.`, document.createElement('br'));
+            if(strilkes === 0 && ball === 0)
+               $log.append(`${value}값은 out입니다!!!`)
+            else
+               $logs.append(`${value}값은 ${strilkes} strilkes, ${ball} balls 입니다.`, document.createElement('br'));
       });
    </script>
 </body>
