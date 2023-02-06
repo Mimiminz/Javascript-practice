@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="result">추첨 결과는? </div>
-<div id = "bonus">보너스 : </div>   
+<div id ="bonus">보너스 : </div>   
 <script>
    const candidate = Array(45).fill().map((v,i) => i + 1);
    const shuffle = [];
@@ -28,7 +28,25 @@
    const bonus = shuffle[6];
    console.log(winBalls, bonus);
 
-   
+   const $result = document.querySelector('#result');
+   const $bonus = document.querySelector('#bonus');
+
+   const showBall = (number, $target) => {
+      const $ball = document.createElement('div');
+      $ball.className = 'ball';
+      $ball.textContent = number;
+      $target.appendChild($ball);
+   }
+
+   for(let i = 0; i < 6; i++){
+      setTimeout(() => {
+         showBall(winBalls[i], $result);
+   }, (i + 1)*1000);   
+   }
+
+   setTimeout(() => {
+      showBall(bonus, $bonus);
+   }, 7000);
 </script>
 </body>
 </html>
